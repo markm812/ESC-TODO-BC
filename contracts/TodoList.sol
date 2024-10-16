@@ -21,13 +21,26 @@ contract TodoList {
         uint creationDate
     );
 
+    event TaskCompleted(
+        uint id,
+        bool completed
+    );
+
     constructor() public {
         createTask("Try adding a task to the list");
     }
 
     function createTask(string memory _content) public {
         taskCount++;
-        tasks[taskCount] = Task(taskCount, _content, false, block.timestamp); 
-        emit TaskCreated(taskCount, _content, false, block.timestamp);
+        uint createdAt = block.timestamp;
+        tasks[taskCount] = Task(taskCount, _content, false, createdAt); 
+        emit TaskCreated(taskCount, _content, false, createdAt);
+    }
+
+    function toggleCompleted(uint _id) public {
+        Task memory _task = tasks[_id];
+        _task.completed = !_task.completed;
+        tasks[_id] = _task;
+        emit TaskCompleted(_id, _task.completed);
     }
 }
