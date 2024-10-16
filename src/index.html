@@ -37,11 +37,13 @@
                     <div class="spinner-border" role="status"></div>
                 </div>
                 <div id="content">
-                    <form onSubmit="App.createTask(); return false;">
-                        <input id="newTask" type="text" class="form-control" placeholder="Add task..." required>
-                        <input type="submit" hidden="">
-                    </form>
-
+                    <div class="d-flex justify-content-center">
+                        <form onSubmit="App.createTask(); return false;">
+                            <input id="newTask" type="text" class="form-control" placeholder="Add task..." required>
+                            <input type="submit" hidden="">
+                        </form>
+                    </div>
+                    <br>
                     <ul id="taskList" class="list-unstyled">
                         <div class="taskTemplate" style="display: none">
                             <div class="d-flex align-items-center">
