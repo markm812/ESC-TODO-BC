@@ -14,12 +14,20 @@ contract TodoList {
     // Hash table to store tasks
     mapping(uint => Task) public tasks;
 
+    event TaskCreated(
+        uint id,
+        string content,
+        bool completed,
+        uint creationDate
+    );
+
     constructor() public {
         createTask("Try adding a task to the list");
     }
 
     function createTask(string memory _content) public {
         taskCount++;
-        tasks[taskCount] = Task(taskCount, _content, false, block.timestamp);
+        tasks[taskCount] = Task(taskCount, _content, false, block.timestamp); 
+        emit TaskCreated(taskCount, _content, false, block.timestamp);
     }
 }
